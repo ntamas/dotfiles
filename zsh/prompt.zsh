@@ -97,6 +97,10 @@ rb_prompt() {
   fi
 }
 
+virtualenv_info() {
+  [ $VIRTUAL_ENV ] && echo "$(basename $VIRTUAL_ENV)"
+}
+
 directory_name() {
   echo "%{$fg_bold[blue]%}%1/%\/%{$reset_color%}"
 }
@@ -105,12 +109,13 @@ username_and_hostname() {
   echo "%{$fg_bold[green]%}%n@%m%{$reset_color%}"
 }
 
-export PROMPT=$'\n$(username_and_hostname):$(directory_name) $(git_dirty)$(hg_dirty)$(need_push)\n› '
-set_prompt () {
-  export RPROMPT="%{$fg_bold[cyan]%}%{$reset_color%}"
+last_exit_code() {
+  echo "%{$fg_bold[red]%}%(?.. [%?])%{$reset_color%}"
 }
+
+export PROMPT=$'\n$(username_and_hostname):$(directory_name) $(git_dirty)$(hg_dirty)$(need_push)\n› '
+export RPROMPT="$(last_exit_code)"
 
 precmd() {
   title "zsh" "%m" "%55<...<%~"
-  set_prompt
 }
