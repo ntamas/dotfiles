@@ -9,6 +9,13 @@ else
   git="/usr/bin/git"
 fi
 
+if (( $+commands[hg] ))
+then
+  hg="$commands[hg]"
+else
+  hg="/usr/bin/hg"
+fi
+
 git_branch() {
   echo $($git symbolic-ref HEAD 2>/dev/null | awk -F/ {'print $NF'})
 }
@@ -32,6 +39,28 @@ git_prompt_info () {
  ref=$($git symbolic-ref HEAD 2>/dev/null) || return
 # echo "(%{\e[0;33m%}${ref#refs/heads/}%{\e[0m%})"
  echo "${ref#refs/heads/}"
+}
+
+hg_dirty() {
+  st=$($hg prompt "{status}{branch}{ at {bookmark}}") 2>/dev/null || return
+  flag=${st[1]}
+  if [[ $flag == "?" ]]
+  then
+	st=${st[2,-1]}
+    echo "on %{$fg_bold[yellow]%}${st}%{$reset_color%}"
+  else
+    if [[ $flag == "!" ]]
+    then
+	  st=${st[2,-1]}
+      echo "on %{$fg_bold[red]%}${st}%{$reset_color%}"
+    else
+      echo "on %{$fg_bold[green]%}${st}%{$reset_color%}"
+	fi
+  fi
+}
+
+hg_prompt_info () {
+  $hg prompt "{branch}{ at {bookmark}}" 2>/dev/null
 }
 
 unpushed () {
