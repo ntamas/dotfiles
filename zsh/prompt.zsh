@@ -42,8 +42,26 @@ git_prompt_info () {
 }
 
 hg_dirty() {
-  st=$($hg prompt "{status}{branch}{ at {bookmark}}") 2>/dev/null || return
-  flag=${st[1]}
+  if (( $+commands[fast-hg-status] ))
+  then
+    # Use fast-hg-status and fast-hg-bookmark
+    flag="$($commands[fast-hg-status])"
+    st="$($commands[fast-hg-bookmark])"
+    if [[ "x$st" == x ]]; then
+      return
+    fi
+    if [[ $flag == "*" ]]; then
+      flag="!"
+      st="!${st}"
+    else
+      flag=""
+    fi
+  else
+    # Use hg-status plugin
+    st=$($hg prompt "{status}{branch}{ at {bookmark}}") 2>/dev/null || return
+    flag=${st[1]}
+  fi
+
   if [[ $flag == "?" ]]
   then
 	st=${st[2,-1]}
@@ -57,10 +75,6 @@ hg_dirty() {
       echo "on %{$fg_bold[green]%}${st}%{$reset_color%}"
 	fi
   fi
-}
-
-hg_prompt_info () {
-  $hg prompt "{branch}{ at {bookmark}}" 2>/dev/null
 }
 
 unpushed () {
