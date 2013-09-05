@@ -55,7 +55,7 @@ virtualenv_info() {
 }
 
 directory_name() {
-  echo "%{$fg_bold[blue]%}%1/%\/%{$reset_color%}"
+  echo "%{$fg_bold[blue]%}%~%\/%{$reset_color%}"
 }
 
 battery_status() {
