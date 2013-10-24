@@ -1,2 +1,2 @@
 # Set up FLEX_HOME
-FLEX_HOME="/Applications/Adobe Flash Builder 4.7/sdks/4.9.1-air3.6"
+FLEX_HOME="${HOME}/opt/apache-flex/4.10.0-air3.8"
