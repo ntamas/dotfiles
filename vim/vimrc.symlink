@@ -1,4 +1,224 @@
-syntax on
+" System vimrc file for Mac OS X
+" Author:  Benji Fisher <benji@member.AMS.org>
+" Last modified:  8 May 2006
+"
+" Some modifications by Tamas Nepusz <ntamas@gmail.com> to suit my own needs
 
-" Wrap gitcommit file types at the appropriate length
-filetype indent plugin on
+" TODO:  Is there a better way to tell that Vim.app was started from Finder.app?
+" Note:  Do not move this to the gvimrc file, else this value of $PATH will
+" not be available to plugin scripts.
+if has("gui_running") && system('ps xw | grep "Vim -psn" | grep -vc grep') > 0
+  " Get the value of $PATH from a login shell.
+  " If your shell is not on this list, it may be just because we have not
+  " tested it.  Try adding it to the list and see if it works.  If so,
+  " please post a note to the vim-mac list!
+  if $SHELL =~ '/\(sh\|csh\|bash\|tcsh\|zsh\)$'
+    let s:path = system("echo echo VIMPATH'${PATH}' | $SHELL -l")
+    let $PATH = matchstr(s:path, 'VIMPATH\zs.\{-}\ze\n')
+  endif
+endif
+
+" Load Pathogen
+filetype off
+call pathogen#infect()
+filetype plugin indent on
+
+" We don't want to be vi-compatible
+set nocompatible
+
+" Maximize window size vertically if running on GUI
+if has("gui_running")
+  if has("gui_macvim")
+    set guifont=Inconsolata:h14
+    set lines=71 columns=101
+  else
+    set lines=55 columns=90
+  endif
+  " Highlight current line on the GUI only; looks bad on console
+  set cursorline
+endif
+
+" Set colorscheme for the console
+if !has("gui_running")
+  colorscheme peachpuff
+endif
+
+" Global variables
+" ================
+let g:pylint_onwrite = 0
+
+" Global settings
+" ===============
+
+" Use UTF-8 encoding
+set encoding=utf-8
+" Always leave 3 lines visible when scrolling
+set scrolloff=3
+" Show current command in the footer
+set showcmd
+" Hide buffers when the window is closed, do not close them
+set hidden
+" Default tab settings
+set tabstop=4
+set shiftwidth=4
+set expandtab
+set softtabstop=4
+" Multiple-window mode
+map <C-J> <C-W>j<C-W>_
+map <C-K> <C-W>k<C-W>_
+set wmh=0
+" Map leader
+let mapleader=","
+" Use arrow keys inside wrapped lines
+map <Up> gk
+map <Down> gj
+" Syntax highlighting
+syntax on
+" Show matching brackets
+set showmatch
+" Auto-indent for programming
+set autoindent
+" No-compatibility mode
+set nocompatible
+" Visual bell
+set visualbell
+" Do not put CR at the end of the last line
+set binary noeol
+" Backspace handling
+set backspace=indent,eol,start
+" Turn on wild menu
+set wildmenu
+" Completion mode
+set wildmode=longest,list,full
+" Assume fast TTY
+set ttyfast
+" Use a status line always
+set laststatus=2
+" Use modelines
+set modeline
+" Search in the first five lines for modelines
+set modelines=5
+" Remember information between vim restarts
+set viminfo='200,<300,s150,%,h,!
+
+" Searching
+" =========
+
+nnoremap / /\v
+vnoremap / /\v
+" Case-insensitive search by default
+set ignorecase
+" Make searches case sensitive if at least one character is uppercase
+set smartcase
+" Use global substitutions by default
+set gdefault
+" Incremental search 
+set incsearch
+" Highlight matches
+set showmatch
+" Keep highlight after search
+set hlsearch
+" Allow us to clear out a search with leader-comma
+nnoremap <leader><space> :noh<cr>
+
+" Wrapping
+" ========
+set wrap
+set textwidth=79
+set colorcolumn=85
+set formatoptions=qrn1
+
+" Auto-complete
+" =============
+
+" Don't scan include files
+set complete-=i
+
+" File-related stuff
+" ==================
+
+" Support all three CR formats
+set fileformats=unix,dos,mac
+
+" Detect the type of file and enable filetype-specific indenting
+filetype plugin indent on
+
+" Start the visual/selection mode with Shift+Arrows
+set keymodel=startsel
+
+" GUI-related stuff
+" =================
+
+" No toolbar
+set guioptions-=T
+" No autoselect
+set guioptions-=a
+" Use console messages instead of GUI dialogs
+set guioptions+=c
+" Show line numbers and add toggle button
+set number
+nnoremap <F2> :set nonumber!<CR>:set foldcolumn=0<CR>
+" Ruler format
+set ruler
+set rulerformat=%25(%n%m%r:\ %Y\ [%l,%v]\ %p%%%)
+" Minimal number of lines above/below cursor
+set scrolloff=3
+" Shorter messages
+set shortmess=asI
+" Show command in status line
+set showcmd
+" Status line format:
+" {buffer number}: {file name, relative path to the current working directory}{modified flag}{readonly flag}
+" {help flag}{preview flag} [file type, encoding, format] [current line-total lines, current column][position percentage in file]
+set statusline=%n:\ %f%m%r%h%w\ [%Y,%{&fileencoding},%{&fileformat}]\ [%l-%L,%v][%p%%]
+" Set fast TTY
+set ttyfast
+" Do not redraw while running macros (much faster).
+set lazyredraw 
+" What to show when you do :set list.
+set listchars=tab:\|\ ,trail:.,extends:>,precedes:<,eol:$ 
+" Highlight right margin
+highlight OverLength ctermbg=red ctermfg=white guibg=#FFCC66
+match OverLength /\%80v.\+/
+
+" Code folding
+" ============
+
+set foldenable
+" Fold column width
+set foldcolumn=1
+" Make folding indent sensitive
+set foldmethod=indent
+" Folds with a higher level will be closed automatically
+set foldlevel=16
+
+if has("autocmd")
+  " Automatically change to the directory of the current buffer
+  autocmd BufEnter * :cd %:p:h
+  " autocmd BufRead *.py set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
+  autocmd BufRead *.py set ts=4
+  autocmd BufRead *.py set shiftwidth=4
+  autocmd BufRead *.py set expandtab
+  autocmd BufRead *.py syntax match Error "\(^ *\)\@<=\t\+"
+  autocmd BufRead *.c set smartindent
+  autocmd BufRead *.h set smartindent
+  autocmd BufRead *.cpp set smartindent
+  autocmd BufRead *.hpp set smartindent
+  autocmd BufRead *.as set filetype=actionscript
+  autocmd BufRead *.mxml set filetype=mxml
+  autocmd FileType python compiler pylint
+endif
+
+" Tab handling
+" ============
+
+map <Leader>tn :tabnew<Enter>
+map <Leader>tc :tabclose<Enter>
+map <Leader>te :tabedit<Space>
+
+" LaTeX invocation
+map <Leader>rl :!rubber --pdf %
+" Python invocation
+map <Leader>rp :w<CR>:!/usr/bin/env python % <CR>
+" Switch between header/source
+map <C-Tab> :A<Enter>
