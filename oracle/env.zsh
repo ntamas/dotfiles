@@ -1,0 +1,5 @@
+# Set up ORACLE_HOME
+export ORACLE_HOME="${HOME}/opt/oracle/instantclient_11_2"
+
+# Extend DYLD_LIBRARY_PATH
+export DYLD_LIBRARY_PATH="${ORACLE_HOME}${DYLD_LIBRARY_PATH+:}${DYLD_LIBRARY_PATH}"
