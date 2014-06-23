@@ -46,6 +46,8 @@ endif
 " Global variables
 " ================
 let g:pylint_onwrite = 0
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
 
 " Global settings
 " ===============
@@ -90,6 +92,8 @@ set backspace=indent,eol,start
 set wildmenu
 " Completion mode
 set wildmode=longest,list,full
+" Ignore certain extensions when completing file names
+set wildignore=*.class,*.pyc
 " Assume fast TTY
 set ttyfast
 " Use a status line always

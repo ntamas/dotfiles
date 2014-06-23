@@ -6,6 +6,7 @@ git_bundles = [
   "git://github.com/evandrewry/vim-mxml.git",
   "git://github.com/jeroenbourgois/vim-actionscript.git",
   "git://github.com/kchmck/vim-coffee-script.git",
+  "git://github.com/kien/ctrlp.vim.git"
   "git://github.com/klen/python-mode.git",
   "git://github.com/ksauzz/thrift.vim.git",
   "git://github.com/pangloss/vim-javascript.git",
