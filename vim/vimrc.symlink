@@ -46,6 +46,7 @@ endif
 " Global variables
 " ================
 let g:pylint_onwrite = 0
+let g:pymode_rope_lookup_project = 0
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 
@@ -210,7 +211,6 @@ if has("autocmd")
   autocmd BufRead *.hpp set smartindent
   autocmd BufRead *.as set filetype=actionscript
   autocmd BufRead *.mxml set filetype=mxml
-  autocmd FileType python compiler pylint
 endif
 
 " Tab handling
