@@ -1,0 +1,11 @@
+account ntamas
+host smtp.gmail.com
+port 587
+protocol smtp
+auth on
+from ntamas@gmail.com
+user ntamas@gmail.com
+tls on
+tls_trust_file ~/.mutt/Equifax_Secure_CA.cert
+
+account default : ntamas
