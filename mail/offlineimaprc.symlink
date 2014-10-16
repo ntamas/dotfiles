@@ -1,0 +1,27 @@
+[general]
+ui = blinkenlights
+accounts = TamasNepusz
+pythonfile = ~/.mutt/offlineimap.py
+fsync = False
+
+[Account TamasNepusz]
+localrepository = TamasNepusz-Local
+remoterepository = TamasNepusz-Remote
+status_backend = sqlite
+postsynchook = notmuch new
+
+[Repository TamasNepusz-Local]
+type = Maildir
+localfolders = ~/.mail/ntamas-gmail.com
+nametrans = local_to_remote_nametrans
+
+[Repository TamasNepusz-Remote]
+cert_fingerprint = 5b6ebc897d19317405adb03190cf432a1badcd40
+maxconnections = 1
+type = Gmail
+remoteuser = ntamas@gmail.com
+remotepasseval = get_keychain_pass(account="ntamas@gmail.com", server="imap.gmail.com")
+realdelete = no
+readonly = true
+nametrans = remote_to_local_nametrans
+folderfilter = is_folder_synced
