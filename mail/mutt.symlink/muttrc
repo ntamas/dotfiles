@@ -99,12 +99,14 @@ set quote_regexp = "^( {0,4)[>|:#%]| {0,4}[a-z0-9]+[>|]+)+"
 alternative_order text/plain text/enriched text/html
 
 # Pager Key Bindings ---------------------------------
-bind pager k  previous-line
-bind pager j  next-line
-bind pager gg top
-bind pager G  bottom
-bind pager R  group-reply
-bind pager ,  exit
+bind pager k       previous-undeleted
+bind pager j       next-undeleted
+bind pager <up>    previous-line
+bind pager <down>  next-line
+bind pager gg      top
+bind pager G       bottom
+bind pager R       group-reply
+bind pager ,       exit
 bind attach <return> view-mailcap
 
 macro pager \Cu "|urlview<enter>" "call urlview to open links"
