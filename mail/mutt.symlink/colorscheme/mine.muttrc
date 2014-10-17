@@ -2,9 +2,9 @@
 ## http://nongeekshandbook.blogspot.ie/2009/03/mutt-color-configuration.html
 
 ## Colours for items in the index
-color index brightcyan black ~N
+color index brightwhite black ~N
 color index brightred black ~O
-color index brightwhite red ~F
+color index white red ~F
 color index black green ~T
 color index brightblack black ~D
 mono index bold ~N
