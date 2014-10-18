@@ -68,8 +68,9 @@ set reply_regexp = "^(([Rr][Ee]?(\[[0-9]+\])?: *)?(\[[^]]+\] *)?)*"
 
 bind index gg       first-entry
 bind index G        last-entry
-bind index R        group-reply
-bind index <tab>    sync-mailbox
+bind index r        group-reply
+bind index R        reply
+bind index \#       sync-mailbox
 bind index <space>  collapse-thread
 bind index p        recall-message
 
@@ -105,11 +106,13 @@ bind pager <up>    previous-line
 bind pager <down>  next-line
 bind pager gg      top
 bind pager G       bottom
-bind pager R       group-reply
+bind pager r        group-reply
+bind pager R        reply
 bind pager ,       exit
+bind pager \#      sync-mailbox
 bind attach <return> view-mailcap
 
-macro pager \Cu "|urlview<enter>" "call urlview to open links"
+macro pager \Cu "|urlscan<enter>" "call urlview or urlscan to open links"
 
 # Compose View Options -------------------------------
 set realname = "Tamas Nepusz"         # who am i?
@@ -127,10 +130,11 @@ set reply_to                          # reply to Reply to: field
 set reverse_name                      # reply as whomever it was to
 set include                           # include message in replies
 set forward_quote                     # include message in forwards
-set editor = "mvim -f"                # use MacVim to compose email.
+set editor = "vim -f '+/^$'"          # use MacVim to compose email.
 
 # Compose View Key Bindings --------------------------
-bind compose p postpone-message
+bind compose p   postpone-message
+bind compose \Cx send-message
 
 # SMTP Sttings ---------------------------------------
 set from     = "ntamas@gmail.com"
