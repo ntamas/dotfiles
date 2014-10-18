@@ -112,7 +112,12 @@ bind pager ,       exit
 bind pager \#      sync-mailbox
 bind attach <return> view-mailcap
 
-macro pager \Cu "|urlscan<enter>" "call urlview or urlscan to open links"
+# Viewing URLs
+macro pager \Cu "|~/.mutt/urlview.sh<enter>" "call urlview or urlscan to open links"
+
+# Sync email
+macro pager O "<shell-escape>offlineimap<enter>"            "run offlineimap to sync all mail"
+macro pager o "<shell-escape>offlineimap -qf INBOX<enter>"  "run offlineimap to sync inbox"
 
 # Compose View Options -------------------------------
 set realname = "Tamas Nepusz"         # who am i?
