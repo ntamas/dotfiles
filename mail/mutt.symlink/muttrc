@@ -1,5 +1,5 @@
 # Paths ----------------------------------------------
-set folder           = ~/.mail               # mailbox location
+set folder           = ~/.mail/ntamas-gmail.com # mailbox location
 set alias_file       = ~/.mutt/alias         # where to store aliases
 set header_cache     = ~/.mutt/cache/headers # where to store headers
 set message_cachedir = ~/.mutt/cache/bodies  # where to store bodies
@@ -40,20 +40,17 @@ source ~/.mutt/colorscheme/mine.muttrc
 # Account Settings -----------------------------------
 
 # Default inbox.
-set spoolfile = "+ntamas-gmail.com/INBOX"
+set spoolfile = "+INBOX"
 
 # Alternate email addresses.
 alternates tamas@milinnovations.com tamas@sixdegrees.hu ntamas@gmail.com nepusz@hal.elte.hu
 
 # Mailboxes.
-mailboxes +ntamas-gmail.com/INBOX \
-          +ntamas-gmail.com/archive \
-          +ntamas-gmail.com/sent \
-          +ntamas-gmail.com/drafts \
+mailboxes +INBOX +archive +sent +drafts
 
 # Other special folders.
-set mbox      = "+ntamas-gmail.com/archive"
-set postponed = "+ntamas-gmail.com/drafts"
+set mbox      = "+archive"
+set postponed = "+drafts"
 
 # Index View Options ---------------------------------
 set date_format  = "%m/%d"
@@ -135,7 +132,7 @@ set reply_to                          # reply to Reply to: field
 set reverse_name                      # reply as whomever it was to
 set include                           # include message in replies
 set forward_quote                     # include message in forwards
-set editor = "vim -f '+/^$'"          # use MacVim to compose email.
+set editor = "vim -f '+/^$' '+noh' '+startinsert'"  # use MacVim to compose email.
 
 # Compose View Key Bindings --------------------------
 bind compose p   postpone-message
