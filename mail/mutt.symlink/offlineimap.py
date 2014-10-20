@@ -8,7 +8,7 @@ import subprocess
 FOLDER_MAPPING = {
     'chats':      '[Gmail]/Chats',
     'drafts':     '[Gmail]/Drafts',
-    'sent':       '[Gmail]/Sent',
+    'sent':       '[Gmail]/Sent Mail',
     'flagged':    '[Gmail]/Starred',
     'trash':      '[Gmail]/Trash',
     'archive':    '[Gmail]/All Mail'
