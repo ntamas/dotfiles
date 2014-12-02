@@ -20,7 +20,7 @@ maxconnections = 1
 type = Gmail
 remoteuser = ntamas@gmail.com
 remotepasseval = get_keychain_pass(account="ntamas@gmail.com", server="imap.gmail.com")
-realdelete = yes
+realdelete = True
 nametrans = remote_to_local_nametrans
 folderfilter = is_folder_synced
 sslcacertfile = ~/.dotfiles/mail/dummycert.pem

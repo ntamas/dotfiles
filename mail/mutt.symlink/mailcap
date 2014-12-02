@@ -1,5 +1,8 @@
-# MS Word documents
-application/msword; ~/.mutt/view_attachment.sh %s "-" '/Applications/TextEdit.app'
+# MS documents
+application/msword; ~/.mutt/view_attachment.sh %s "-" '/Applications/LibreOffice.app'
+application/vnd.openxmlformats-officedocument.wordprocessingml.document; ~/.mutt/view_attachment.sh %s docx '/Applications/LibreOffice.app'
+application/vnd.openxmlformats-officedocument.presentationml.document; ~/.mutt/view_attachment.sh %s pptx '/Applications/LibreOffice.app'
+application/vnd.openxmlformats-officedocument.spreadsheetml.document; ~/.mutt/view_attachment.sh %s xlsx '/Applications/LibreOffice.app'
 
 # Images
 image/jpg; ~/.mutt/view_attachment.sh %s jpg
