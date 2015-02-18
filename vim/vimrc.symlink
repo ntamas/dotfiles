@@ -41,6 +41,8 @@ endif
 " Set colorscheme for the console
 if !has("gui_running")
   colorscheme peachpuff
+else
+  set bg=light
 endif
 
 " Global variables
