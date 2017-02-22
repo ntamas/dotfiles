@@ -1,0 +1,1 @@
+export PATH="$HOME/opt/gcc/arm-none-eabi/bin:$HOME/opt/gcc/arm-none-linux-gnueabi/bin:$PATH"
