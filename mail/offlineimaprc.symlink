@@ -1,5 +1,5 @@
 [general]
-ui = blinkenlights
+ui = ttyui
 accounts = TamasNepusz
 pythonfile = ~/.mutt/offlineimap.py
 fsync = False
@@ -8,7 +8,6 @@ fsync = False
 localrepository = TamasNepusz-Local
 remoterepository = TamasNepusz-Remote
 status_backend = sqlite
-postsynchook = notmuch new
 
 [Repository TamasNepusz-Local]
 type = Maildir
