@@ -18,11 +18,6 @@ if has("gui_running") && system('ps xw | grep "Vim -psn" | grep -vc grep') > 0
   endif
 endif
 
-" Load Pathogen
-filetype off
-call pathogen#infect()
-filetype plugin indent on
-
 " We don't want to be vi-compatible
 set nocompatible
 
