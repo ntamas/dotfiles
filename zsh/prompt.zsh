@@ -24,7 +24,7 @@ git_dirty() {
   st=$($git status 2>/dev/null | tail -n 1)
   if [[ $st == "" ]]
   then
-    echo "on %{$fg_bold[yellow]%}$(git_prompt_info)%{$reset_color%}"
+    echo ""
   else
     if [[ "$st" =~ ^nothing ]]
     then
