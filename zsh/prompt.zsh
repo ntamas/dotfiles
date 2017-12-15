@@ -16,7 +16,7 @@ git_branch() {
 git_dirty() {
   if $(! $git status -s &> /dev/null)
   then
-    echo "on %{$fg_bold[yellow]%}$(git_prompt_info)%{$reset_color%}"
+    echo ""
   else
     if [[ $($git status --porcelain) == "" ]]
     then
