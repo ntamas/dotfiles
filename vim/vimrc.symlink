@@ -184,6 +184,9 @@ set listchars=tab:\|\ ,trail:.,extends:>,precedes:<,eol:$
 highlight OverLength ctermbg=red ctermfg=white guibg=#FFCC66
 match OverLength /\%80v.\+/
 
+" Use Powerline fonts in the modebar
+let g:airline_powerline_fonts = 1
+
 " Code folding
 " ============
 
