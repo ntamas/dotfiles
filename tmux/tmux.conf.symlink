@@ -1,4 +1,0 @@
-# Use C-a as a prefix instead of C-b for sake of compatibility
-# with screen
-unbind C-b
-set -g prefix C-a
