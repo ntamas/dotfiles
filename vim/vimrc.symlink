@@ -33,12 +33,8 @@ if has("gui_running")
   set cursorline
 endif
 
-" Set colorscheme for the console
-if !has("gui_running")
-  colorscheme peachpuff
-else
-  set bg=light
-endif
+" Set colorscheme
+colorscheme onedark
 
 " Global variables
 " ================
