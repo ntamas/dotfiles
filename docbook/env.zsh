@@ -1,1 +1,1 @@
-export XML_CATALOG_FILES="/usr/local/etc/xml/catalog"
+export XML_CATALOG_FILES="$(brew --prefix)/etc/xml/catalog"
