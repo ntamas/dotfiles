@@ -9,6 +9,7 @@
         wtf     = !$ZSH/bin/git-wtf
         rank-contributors = !$ZSH/bin/git-rank-contributors
         count   = !git shortlog -sn
+        lol = log --graph --decorate --pretty=oneline --abbrev-commit --all
 [color]
         diff = auto
         status = auto
@@ -33,3 +34,5 @@
         default = simple
 [credential]
 	helper = osxkeychain
+[init]
+	defaultBranch = main
