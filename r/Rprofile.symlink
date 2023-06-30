@@ -1,0 +1,6 @@
+options(
+  warnPartialMatchAttr = TRUE,
+  warnPartialMatchDollar = TRUE,
+  warnPartialMatchArgs = TRUE,
+  Ncpus = 6
+)
